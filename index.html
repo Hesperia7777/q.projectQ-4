@@ -166,8 +166,8 @@ function go(list){const rv=list?0:$("r").value;let l=list||D.filter(x=>rv=="*"||
 if(!list){const n=+$("n").value;inst=$("in").value=="1";if($("sh").value=="1")l=shuf(l);l=l.slice(0,n)}
 P=l.map(x=>({...x,c:x.o[0],o:shuf(x.o)}));i=0;ans=[];show()}
 function show(){const x=P[i],a=ans[i];
-A.innerHTML=`<div class="bar"><i style="width:${i/P.length*100}%"></i></div><p class="sm">第 ${i+1}／${P.length} 題・${S[x.s]}</p>
-<div class="card"><b>${x.q}</b>${x.o.map((t,k)=>`<button class="opt" id="o${k}" onclick="pick(${k})">${"ABCD"[k]}. ${t}</button>`).join("")}<div id="fb"></div></div>
+A.innerHTML=`<div class="bar"><i style="width:${i/P.length*100}%"></i></div><p class="sm">第 ${i+1}／${P.length} 題・${S[x.s]}・快捷鍵：1～4 選答、Enter 下一題</p>
+<div class="card"><b>${x.q}</b>${x.o.map((t,k)=>`<button class="opt" id="o${k}" onclick="pick(${k})">${k+1}. ${t}</button>`).join("")}<div id="fb"></div></div>
 <div class="row"><button onclick="home()">離開</button><button class="pri" style="margin:6px 0" onclick="nx()">${i==P.length-1?"交卷":"下一題"}</button></div>`;
 if(a!==undefined)mark()}
 function pick(k){if(inst&&ans[i]!==undefined)return;ans[i]=k;mark()}
@@ -182,5 +182,8 @@ A.innerHTML=`<div class="card"><h1>成績：${ok}／${P.length}（${pc} 分）</
 ${Object.entries(st).map(([s,v])=>`<p class="sm" style="margin:2px 0">${S[s]}：${v[0]}／${v[1]}</p>`).join("")}</div>
 ${w.length?`<button class="pri" onclick="go(_w)">重練錯題（${w.length}題）</button><div class="card"><b>錯題解析</b>${w.map(x=>`<p>${x.q}<br><span style="color:var(--ok)">答案：${x.c}</span>${x.e?"<br><span class=sm>"+x.e+"</span>":""}</p>`).join("")}</div>`:"<p>全對，太強了！🎉</p>"}
 <button onclick="home()">回到選單</button>`}
+document.addEventListener("keydown",e=>{if(e.ctrlKey||e.metaKey||e.altKey)return;
+if($("o0")){if(e.key.length==1&&"1234".includes(e.key)){const k=+e.key-1;if(P[i].o[k]!==undefined){e.preventDefault();pick(k)}}else if(e.key=="Enter"){e.preventDefault();nx()}}
+else if($("r")&&e.key=="Enter"&&e.target.tagName!="BUTTON"){go()}});
 home();
 </script></body></html>
