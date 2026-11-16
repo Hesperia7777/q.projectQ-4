@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>敏捷專案管理 第四章題庫</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#faf9f6;--fg:#1f1e1b;--card:#fff;--bd:#d9d6cf;--ac:#2f6fd0;--ok:#2e8b57;--no:#c9372c;--mu:#6b685f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1b19;--fg:#ece9e2;--card:#272623;--bd:#3d3b37;--ac:#6ea3f0;--ok:#5cc08a;--no:#f07a70;--mu:#a29f95;color-scheme:dark}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,"Noto Sans TC","PingFang TC",sans-serif;padding:16px;max-width:640px;margin:auto}
+h1{font-size:20px;margin:8px 0}.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;margin:12px 0}
+label{display:block;font-size:14px;color:var(--mu);margin:12px 0 4px}
+select,button{font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px 12px;width:100%}
+select{appearance:auto}button{cursor:pointer;text-align:left;margin:6px 0}
+.pri{background:var(--ac);color:#fff;border:0;text-align:center;font-weight:600;margin-top:16px}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,var(--card))}
+.opt.no{border-color:var(--no);background:color-mix(in srgb,var(--no) 18%,var(--card))}
+.opt.sel{border-color:var(--ac);border-width:2px}
+.bar{height:6px;background:var(--bd);border-radius:3px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ac)}
+.sm{font-size:14px;color:var(--mu)}.ex{margin-top:10px;padding:10px;border-left:3px solid var(--ac);font-size:15px}
+.row{display:flex;gap:8px}.row button{text-align:center}
+</style></head><body>
+<h1>📝 敏捷專案管理 第四章題庫</h1><div id="app"></div>
+<script>
+const S={"1.1":"1.1 階段工作與產出","1.2":"1.2 建立產品願景","1.3":"1.3 可行性度量評估","2.1":"2.1 起始流程","2.2":"2.2 章程與角色","2.3":"2.3 用戶故事與待辦清單","2.4":"2.4 高階估算與產品地圖","R":"重點與考試"};
+const D=`1.1|可行性分析階段「不」參與的角色是？|開發團隊|贊助者|產品負責人|敏捷教練|參與者含贊助者、利害關係人、PO與敏捷教練，開發團隊不參與。
+1.1|可行性分析階段的產出是？|專案核准文件|專案章程|產品待辦清單|產品地圖|工作事項：建立願景、準備營運企劃案、核准專案，產出專案核准文件。
+1.1|下列何者不是可行性分析的工作事項？|建立產品待辦清單|建立專案願景|準備營運企劃案|核准專案|待辦清單屬起始階段。
+1.1|可行性分析第一項工作是？|建立專案願景|準備營運企劃案|核准專案|撰寫團隊章程|順序：願景→營運企劃案→核准專案。
+1.1|下列哪個角色會參與可行性分析？|利害關係人|開發團隊|全體團隊成員|測試人員|
+1.1|「準備營運企劃案」屬於哪個階段？|可行性分析|專案起始|衝刺|發佈|
+1.1|「核准專案」之後產出什麼？|專案核准文件|專案章程|角色卡|產品地圖|
+1.2|電梯行銷術符合敏捷原則第幾條？|第十條|第六條|第一條|第十二條|第十條為精簡原則。
+1.2|設計產品盒的目的是？|精簡並排除不需要做的工作|取代專案章程|估算工作量|辨識利害關係人|
+1.2|電梯行銷術的呈現形式？|簡短文字或DM海報|盒子正面與背面|角色卡|使用案例圖|
+1.2|設計產品盒的呈現形式？|盒子正面與背面|簡短文字|問卷|T恤尺碼|
+1.2|下列何者不是電梯行銷術描述的內容？|估算故事點|目標客群|產品功能|價值主張|
+1.2|設計產品盒的特色是？|有限空間列出主要賣點|無字數限制|需列出所有功能|用於估算|
+1.2|敏捷原則第十條的精神是？|盡最大可能排除不需要做的工作|面對面溝通|歡迎需求變更|持續交付|
+1.2|電梯行銷術與設計產品盒共同用於？|建立產品願景|辨識角色|高階估算|排優先順序|
+1.3|ROI（投資報酬率）的計算概念是？|獲利除以本金|本金除以獲利|淨現值除以利率|回收時間除以本金|
+1.3|ROI 的決策原則？|值越大越好|值越小越好|等於零|需小於定存|
+1.3|還本期的決策原則？|期間越短越好|期間越長越好|值越大越好|需大於定存|
+1.3|IRR（內部報酬率）的定義？|淨現值為零時之折現率|獲利除以本金|本金回收時間|利率折現後的價值|
+1.3|IRR 的決策原則？|需大於銀行定存利率且越大越好|越小越好|等於本金|小於通膨|
+1.3|PV（現值）考慮的因素？|利率折現|通貨膨脹與利率|本金回收時間|獲利除以本金|
+1.3|NPV（淨現值）考慮的因素？|通貨膨脹與利率|只有利率|只有本金|只有時間|
+1.3|表中沒有英文縮寫的模型是？|還本期|ROI|IRR|NPV|
+1.3|下列何者不是課本的量化評估模型？|T恤尺碼估算|ROI|IRR|NPV|
+1.3|非量化評估方式詳見哪本書？|專案管理紅皮書（NPMA）|PMBOK|敏捷宣言|Scrum指南|
+1.3|以「本金回收速度」為考量的模型？|還本期|ROI|PV|IRR|
+1.3|PV 與 NPV 的決策原則？|高於成本且越大越好|低於成本|等於零|越小越好|
+1.3|PV 與 NPV 的差異在於 NPV 多考慮？|通貨膨脹|本金|成本|獲利|
+2.1|何時正式進入專案起始階段？|完成可行性分析並取得專案核准文件|完成第一次衝刺|產品地圖完成|章程簽署後|
+2.1|專案起始階段的參與者？|所有角色|僅PO|僅贊助者|不含開發團隊|
+2.1|起始階段相較可行性分析，多了哪個角色參與？|開發團隊|贊助者|PO|敏捷教練|
+2.2|敏捷專案章程是結合哪兩者？|專案章程與團隊章程|專案章程與角色卡|團隊章程與產品地圖|願景與待辦清單|
+2.2|下列何者「不是」專案章程欄位？|成功指標|專案緣起|專案目標|預算|成功指標在團隊章程。
+2.2|專案章程包含？|專案經理權責|行為規範|完成的定義|成員名單|
+2.2|團隊章程包含？|完成的定義|預算|期程|專案經理權責|
+2.2|「成功指標」屬於哪個文件？|團隊章程|專案章程|角色卡|產品地圖|
+2.2|「協作溝通方式」屬於哪個文件？|團隊章程|專案章程|角色卡|產品地圖|
+2.2|角色卡樣板欄位？|姓名、照片、說明、價值|預算、期程|成功指標|INVEST|
+2.2|角色卡的用途？|深入辨識與記錄利害關係人需求|宣示專案成立|高階估算|規劃發佈|
+2.2|專案章程的用途？|宣示敏捷專案正式成立|界定團隊日常規範|記錄角色需求|排序待辦清單|
+2.2|團隊章程的用途？|界定團隊日常工作規範|宣示專案成立|記錄利害關係人|規劃發佈|
+2.2|下列何者不是辨識角色的促進方法？|T恤尺碼|腦力激盪|訪談|觀察法|
+2.2|下列何者是辨識角色的促進方法？|使用案例圖|ROI|IRR|電梯行銷術|其他：問卷、焦點團體。
+2.2|「完成的定義」屬於？|團隊章程|專案章程|角色卡|產品地圖|
+2.3|用戶故事的3C是？|卡片、交談、確認|卡片、估算、確認|交談、估算、承諾|卡片、合約、確認|
+2.3|3C 的「交談」對應敏捷原則第幾條？|第六條|第十條|第一條|第九條|
+2.3|敏捷原則第六條的內容？|面對面溝通最有效率|精簡原則|歡迎需求變更|可持續步調|
+2.3|INVEST 的 I 是？|獨立性|整合|迭代|增量|
+2.3|INVEST 的 T（可測試）需要具備？|允收條件|估算|優先級|角色卡|
+2.3|INVEST 的 S 是？|小|簡單|穩定|速度|
+2.3|INVEST 的 N 是？|可協商|必要|新穎|數量|
+2.3|INVEST 的 V 是？|有價值|可見|驗證|版本|
+2.3|INVEST 的 E 是？|可估算|可執行|可擴充|可交付|
+2.3|產品待辦清單由誰維護？|產品負責人（PO）|敏捷教練|開發團隊|贊助者|
+2.3|DEEP 中的 Emergent 對應？|緊急湧入|估算過的|排好順序|詳略得當|
+2.3|DEEP 中的 Detailed appropriately 對應？|詳略得當|緊急湧入|估算過的|排好順序|
+2.3|待辦清單上方的項目具備什麼特性？|最緊急且最有價值|最龐大|最不確定|最低優先|
+2.3|產品待辦清單是團隊工作的？|唯一來源|其中一個來源|參考資料|備份|
+2.3|下列何者不是3C？|估算|卡片|交談|確認|
+2.3|INVEST 與 DEEP 分別用於判斷？|用戶故事品質／待辦清單特性|待辦清單／用戶故事|章程／角色卡|願景／地圖|
+2.4|高階估算採用？|親和估算或相對估算|精確工時估算|ROI|NPV|
+2.4|T恤尺碼屬於？|相對估算|精確估算|財務模型|角色辨識|
+2.4|產品地圖依什麼分配用戶故事？|優先順序分配至各次發佈|角色|成本|人員|
+2.4|第一次發佈放哪類工作？|一定要做的|應該要做的|可以要做的|不要做的|
+2.4|第二次發佈放哪類工作？|應該要做的|一定要做的|可以要做的|不要做的|
+2.4|第三次發佈放哪類工作？|可以要做的|一定要做的|應該要做的|不要做的|
+2.4|資源不足時可以不執行的是？|可以要做的|一定要做的|應該要做的|全部|
+2.4|「優先權最高且非做不可」是？|一定要做的|應該要做的|可以要做的|可做可不做|
+R|敏捷原則第十條對應哪些工具？|電梯行銷術與設計產品盒|用戶故事交談|T恤尺碼|角色卡|
+R|考試要默寫的架構圖範圍是？|可行性分析到起始階段|只有可行性分析|衝刺階段|發佈階段|
+R|默寫架構圖須包含？|參與角色、左側工作項目、階段產出|只有ROI|只有INVEST|只有3C|
+R|第四章全章考試的地點？|學校|線上|公司|家中|
+1.1|小明是開發團隊成員，他需要參加可行性分析嗎？|不需要|需要|只需旁聽|視預算而定|可行性分析階段開發團隊不參與。
+1.1|可行性分析三項工作依序為？|建立願景→營運企劃案→核准專案|核准專案→建立願景→營運企劃案|營運企劃案→核准→願景|願景→章程→核准|
+1.1|專案核准文件是什麼的條件？|進入起始階段|開始衝刺|發佈產品|驗收|
+1.1|可行性分析的參與角色共有幾類？|四類|三類|五類|六類|贊助者、利害關係人、PO、敏捷教練。
+1.1|下列何者是可行性分析參與者？|贊助者|開發團隊|測試團隊|客服團隊|
+1.2|要用一張小海報簡述目標客群與價值主張，適合用？|電梯行銷術|設計產品盒|角色卡|產品地圖|
+1.2|要在盒子正反面列出賣點，適合用？|設計產品盒|電梯行銷術|使用案例圖|問卷|
+1.2|兩種願景工具對應第十條原則，目的是避免？|做不需要的工作|溝通不足|需求變更|交付太快|
+1.2|「建立產品願景」屬於哪個階段？|可行性分析|專案起始|發佈|衝刺|
+1.3|某專案獲利100、本金500，ROI 為？|20%|5%|500%|40%|100÷500=20%。
+1.3|兩專案其他條件相同，應優先選擇？|ROI 較大者|ROI 較小者|還本期較長者|IRR 低於定存者|
+1.3|兩專案比較還本期，應選？|較短者|較長者|等於零者|無關|
+1.3|IRR 為2%，銀行定存為3%，應？|不建議投資|建議投資|無法判斷|等於持平|IRR 需大於定存利率。
+1.3|NPV 為負值代表？|低於成本，不建議|獲利很高|應立即核准|與成本相同|
+1.3|以「折現」概念評估的模型是？|PV|ROI|還本期|T恤尺碼|
+1.3|課本介紹的量化模型共有幾種？|五種|三種|四種|六種|ROI、還本期、IRR、PV、NPV。
+1.3|「淨現值為零時之折現率」描述的是？|IRR|PV|ROI|還本期|
+1.3|想了解非量化評估方式，應閱讀？|專案管理紅皮書|ROI 章節|IRR 章節|章程|
+2.1|起始階段的前置條件是？|取得專案核准文件|完成產品地圖|完成衝刺|完成估算|
+2.1|起始階段與可行性分析的參與差異？|所有角色皆參與|僅贊助者|僅開發團隊|僅教練|
+2.2|「專案緣起」屬於？|專案章程|團隊章程|角色卡|待辦清單|
+2.2|「專案目標」屬於？|專案章程|團隊章程|角色卡|產品地圖|
+2.2|「期程」屬於？|專案章程|團隊章程|角色卡|DEEP|
+2.2|「預算」屬於？|專案章程|團隊章程|角色卡|產品地圖|
+2.2|「成員名單」屬於？|團隊章程|專案章程|角色卡|產品地圖|
+2.2|「專案名稱」是哪份文件的欄位？|團隊章程|專案章程|角色卡|產品地圖|
+2.2|角色卡的「價值」欄位用意？|記錄該角色帶來的價值或需求|記錄預算|記錄期程|記錄完成定義|
+2.2|腦力激盪屬於？|辨識角色的促進方法|財務模型|估算方法|章程欄位|
+2.2|焦點團體屬於？|辨識角色的促進方法|財務模型|估算方法|章程欄位|
+2.2|辨識角色的促進方法共有幾種？|六種|三種|四種|五種|腦力激盪、訪談、使用案例圖、問卷、焦點團體、觀察法。
+2.2|專案經理權責寫在？|專案章程|團隊章程|角色卡|待辦清單|
+2.2|行為規範的用途？|約束團隊成員日常行為|宣示專案成立|估算工作|辨識客戶|
+2.3|3C 的「確認」通常透過什麼達成？|允收條件|估算|章程|角色卡|
+2.3|3C 的「卡片」用來？|簡短記錄需求|詳細寫規格|估算工時|排程|
+2.3|INVEST「獨立性」指？|故事之間盡量不互相依賴|由一人完成|不需測試|不可拆分|
+2.3|INVEST「可協商」指？|細節可透過交談調整|不能修改|由客戶決定|由PO強制|
+2.3|INVEST「小」指？|可在一次迭代內完成的規模|文字很短|價值很小|人數很少|
+2.3|故事無法估算，違反 INVEST 的？|E 可估算|I 獨立性|N 可協商|V 有價值|
+2.3|故事無法測試，違反 INVEST 的？|T 可測試|S 小|V 有價值|I 獨立性|
+2.3|故事沒有價值，違反 INVEST 的？|V 有價值|N 可協商|E 可估算|S 小|
+2.3|DEEP 的「估算過的」要求？|項目都經過估算|不需估算|只估算上方|由客戶估算|
+2.3|DEEP 的「排好順序」指？|依優先順序排列|依字母排列|依大小排列|依提出時間排列|
+2.3|待辦清單可隨時新增項目，符合 DEEP 的？|緊急湧入|詳略得當|估算過的|排好順序|
+2.3|待辦清單的維護關係？|PO 維護，為團隊唯一工作來源|團隊自行維護|教練維護|贊助者維護|
+2.3|INVEST 共有幾個特性？|六個|五個|七個|四個|I、N、V、E、S、T。
+2.4|親和估算是依什麼分組？|相對大小|實際工時|金額|角色|
+2.4|比較兩個故事大小來估算，稱為？|相對估算|精確估算|財務估算|地圖估算|
+2.4|產品地圖的主要用途？|規劃各次發佈包含哪些故事|辨識角色|計算ROI|撰寫章程|
+2.4|「應該要做的」安排在？|第二次發佈|第一次發佈|第三次發佈|不發佈|
+2.4|可做可不做的工作屬於？|可以要做的|應該要做的|一定要做的|取消|
+2.4|最先發佈的是哪類工作？|一定要做的|可以要做的|應該要做的|隨機|
+R|敏捷原則第六條對應用戶故事哪一項？|交談|卡片|確認|估算|
+R|考試時間為？|下個星期|本週五|下個月|明天|
+R|默寫架構圖左側要寫什麼？|工作項目|參與角色|階段產出|章程欄位|`.split("\n").map(l=>{const p=l.split("|");return{s:p[0],q:p[1],o:p.slice(2,6),e:p[6]||""}});
+const $=id=>document.getElementById(id),A=$("app");
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+let P,i,ans,inst,tot={};
+function home(){const o=Object.entries(S).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+A.innerHTML=`<div class="card"><p class="sm">共 ${D.length} 題單選題，選項每次自動隨機排列。</p>
+<label>範圍</label><select id="r"><option value="*">全部章節（${D.length}題）</option>${o}</select>
+<label>題數</label><select id="n"><option value="10">10 題</option><option value="20">20 題</option><option value="40">40 題</option><option value="999">全部</option></select>
+<label>題目順序</label><select id="sh"><option value="1">隨機洗牌</option><option value="0">依章節順序</option></select>
+<label>解析顯示</label><select id="in"><option value="1">答完即時顯示解析</option><option value="0">交卷後才看解析</option></select>
+<button class="pri" onclick="go()">開始測驗</button></div>`}
+function go(list){let l=list||D.filter(x=>$("r").value=="*"||x.s==$("r").value);
+if(!list){const n=+$("n").value;inst=$("in").value=="1";if($("sh").value=="1")l=shuf(l);l=l.slice(0,n)}
+P=l.map(x=>({...x,c:x.o[0],o:shuf(x.o)}));i=0;ans=[];show()}
+function show(){const x=P[i],a=ans[i];
+A.innerHTML=`<div class="bar"><i style="width:${i/P.length*100}%"></i></div><p class="sm">第 ${i+1}／${P.length} 題・${S[x.s]}</p>
+<div class="card"><b>${x.q}</b>${x.o.map((t,k)=>`<button class="opt" id="o${k}" onclick="pick(${k})">${"ABCD"[k]}. ${t}</button>`).join("")}<div id="fb"></div></div>
+<div class="row"><button onclick="home()">離開</button><button class="pri" style="margin:6px 0" onclick="nx()">${i==P.length-1?"交卷":"下一題"}</button></div>`;
+if(a!==undefined)mark()}
+function pick(k){if(inst&&ans[i]!==undefined)return;ans[i]=k;mark()}
+function mark(){const x=P[i],k=ans[i];x.o.forEach((t,j)=>$("o"+j).className="opt");
+if(!inst){$("o"+k).classList.add("sel");return}
+x.o.forEach((t,j)=>{if(t==x.c)$("o"+j).classList.add("ok")});if(x.o[k]!=x.c)$("o"+k).classList.add("no");
+$("fb").innerHTML=`<div class="ex">${x.o[k]==x.c?"✅ 答對了":"❌ 答錯了，正確答案："+x.c}${x.e?"<br>"+x.e:""}</div>`}
+function nx(){if(ans[i]===undefined&&!confirm("這題還沒作答，要跳過嗎？"))return;i<P.length-1?(i++,show()):done()}
+function done(){let ok=0,w=[],st={};P.forEach((x,k)=>{const r=x.o[ans[k]]==x.c;r?ok++:w.push(x);st[x.s]=st[x.s]||[0,0];st[x.s][1]++;if(r)st[x.s][0]++});
+const pc=Math.round(ok/P.length*100);window._w=w;
+A.innerHTML=`<div class="card"><h1>成績：${ok}／${P.length}（${pc} 分）</h1>
+${Object.entries(st).map(([s,v])=>`<p class="sm" style="margin:2px 0">${S[s]}：${v[0]}／${v[1]}</p>`).join("")}</div>
+${w.length?`<button class="pri" onclick="go(_w)">重練錯題（${w.length}題）</button><div class="card"><b>錯題解析</b>${w.map(x=>`<p>${x.q}<br><span style="color:var(--ok)">答案：${x.c}</span>${x.e?"<br><span class=sm>"+x.e+"</span>":""}</p>`).join("")}</div>`:"<p>全對，太強了！🎉</p>"}
+<button onclick="home()">回到選單</button>`}
+home();
+</script></body></html>
