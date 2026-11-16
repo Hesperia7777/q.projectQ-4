@@ -150,15 +150,19 @@ R|考試時間為？|下個星期|本週五|下個月|明天|
 R|默寫架構圖左側要寫什麼？|工作項目|參與角色|階段產出|章程欄位|`.split("\n").map(l=>{const p=l.split("|");return{s:p[0],q:p[1],o:p.slice(2,6),e:p[6]||""}});
 const $=id=>document.getElementById(id),A=$("app");
 const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
-let P,i,ans,inst,tot={};
+let P,i,ans,inst;
+const wbk=()=>{try{return JSON.parse(localStorage.getItem('wrongbook')||'{}')}catch(e){return{}}};
+const wbs=b=>{try{localStorage.setItem('wrongbook',JSON.stringify(b))}catch(e){}};
+function wb(q,ok){const b=wbk();if(ok){if(b[q]){b[q]>1?b[q]--:delete b[q]}}else b[q]=(b[q]||0)+1;wbs(b)}
+function clr(){if(confirm('確定清除錯題本？')){wbs({});home()}}
 function home(){const o=Object.entries(S).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
 A.innerHTML=`<div class="card"><p class="sm">共 ${D.length} 題單選題，選項每次自動隨機排列。</p>
-<label>範圍</label><select id="r"><option value="*">全部章節（${D.length}題）</option>${o}</select>
+<label>範圍</label><select id="r"><option value="*">全部章節（${D.length}題）</option><option value="W">❌ 錯題本（${D.filter(x=>wbk()[x.q]).length}題）</option>${o}</select>
 <label>題數</label><select id="n"><option value="10">10 題</option><option value="20">20 題</option><option value="40">40 題</option><option value="999">全部</option></select>
 <label>題目順序</label><select id="sh"><option value="1">隨機洗牌</option><option value="0">依章節順序</option></select>
 <label>解析顯示</label><select id="in"><option value="1">答完即時顯示解析</option><option value="0">交卷後才看解析</option></select>
-<button class="pri" onclick="go()">開始測驗</button></div>`}
-function go(list){let l=list||D.filter(x=>$("r").value=="*"||x.s==$("r").value);
+<button class="pri" onclick="go()">開始測驗</button><button onclick="clr()" style="text-align:center">清除錯題本</button></div>`}
+function go(list){const rv=list?0:$("r").value;let l=list||D.filter(x=>rv=="*"||(rv=="W"?wbk()[x.q]:x.s==rv));if(!list&&!l.length){alert("這個範圍目前沒有題目（錯題本是空的）");return}
 if(!list){const n=+$("n").value;inst=$("in").value=="1";if($("sh").value=="1")l=shuf(l);l=l.slice(0,n)}
 P=l.map(x=>({...x,c:x.o[0],o:shuf(x.o)}));i=0;ans=[];show()}
 function show(){const x=P[i],a=ans[i];
@@ -172,9 +176,9 @@ if(!inst){$("o"+k).classList.add("sel");return}
 x.o.forEach((t,j)=>{if(t==x.c)$("o"+j).classList.add("ok")});if(x.o[k]!=x.c)$("o"+k).classList.add("no");
 $("fb").innerHTML=`<div class="ex">${x.o[k]==x.c?"✅ 答對了":"❌ 答錯了，正確答案："+x.c}${x.e?"<br>"+x.e:""}</div>`}
 function nx(){if(ans[i]===undefined&&!confirm("這題還沒作答，要跳過嗎？"))return;i<P.length-1?(i++,show()):done()}
-function done(){let ok=0,w=[],st={};P.forEach((x,k)=>{const r=x.o[ans[k]]==x.c;r?ok++:w.push(x);st[x.s]=st[x.s]||[0,0];st[x.s][1]++;if(r)st[x.s][0]++});
+function done(){let ok=0,w=[],st={};P.forEach((x,k)=>{const r=x.o[ans[k]]==x.c;r?ok++:w.push(x);wb(x.q,r);st[x.s]=st[x.s]||[0,0];st[x.s][1]++;if(r)st[x.s][0]++});
 const pc=Math.round(ok/P.length*100);window._w=w;
-A.innerHTML=`<div class="card"><h1>成績：${ok}／${P.length}（${pc} 分）</h1>
+A.innerHTML=`<div class="card"><h1>成績：${ok}／${P.length}（${pc} 分）</h1><p class="sm">錯題已自動記錄，錯題本目前共 ${Object.keys(wbk()).length} 題；之後答對會自動移出。</p>
 ${Object.entries(st).map(([s,v])=>`<p class="sm" style="margin:2px 0">${S[s]}：${v[0]}／${v[1]}</p>`).join("")}</div>
 ${w.length?`<button class="pri" onclick="go(_w)">重練錯題（${w.length}題）</button><div class="card"><b>錯題解析</b>${w.map(x=>`<p>${x.q}<br><span style="color:var(--ok)">答案：${x.c}</span>${x.e?"<br><span class=sm>"+x.e+"</span>":""}</p>`).join("")}</div>`:"<p>全對，太強了！🎉</p>"}
 <button onclick="home()">回到選單</button>`}
